@@ -1,0 +1,23 @@
+---
+import HeaderLink from "../components/HeaderLink.astro"
+import { ROUTES } from "../../constants";
+---
+
+<nav>
+  <ul class="flex items-center justify-evenly text-slate-200 font-semibold text-xl">
+    {ROUTES.map((route) => {      
+      return <HeaderLink route={route.href} />
+    })}
+  </ul>
+</nav>
+
+<script>
+	import { getCurrentPath } from "../../utils/getCurrentPath"
+
+	const currentPath = getCurrentPath(window.location.pathname)
+
+  const li = document.getElementById(currentPath)
+
+  li?.classList.add("current-path")
+  
+</script>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  route: string
+}
+
+const { route } = Astro.props 
+---
+
+<li id={route}><a href={route === "home" ? "/app" : route}>{route}</a></li>
+
+
+<style>
+  .current-path {
+    color: purple
+  }
+</style>
