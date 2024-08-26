@@ -30,10 +30,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   if (!req.session.userid) {
-    return res.redirect('/login');
+    return res.status(401).send('Unauthorized');  
   }
 
-  res.send("Hello World")
+  return res.send("Hello World")
 })
 
 app.get("/login", LogingHandler);
@@ -53,7 +53,7 @@ app.post("/process-login", (req: Request, res: Response) => {
 
   req.session.userid = req.body.username;
 
-  res.redirect('/');
+  res.json({ message: 'Login successful' });
 })
 
 app.listen(PORT, () => {

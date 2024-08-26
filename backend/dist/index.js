@@ -24,9 +24,9 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     if (!req.session.userid) {
-        return res.redirect('/login');
+        return res.status(401).send('Unauthorized');
     }
-    res.send("Hello World");
+    return res.send("Hello World");
 });
 app.get("/login", login_1.LogingHandler);
 app.get("/logout", (req, res) => {
@@ -41,7 +41,7 @@ app.post("/process-login", (req, res) => {
     `);
     }
     req.session.userid = req.body.username;
-    res.redirect('/');
+    res.json({ message: 'Login successful' });
 });
 app.listen(PORT, () => {
     console.log("Server running at PORT: ", PORT);

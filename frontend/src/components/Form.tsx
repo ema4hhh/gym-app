@@ -19,12 +19,12 @@ function Form() {
     await axios.post('http://localhost:1234/process-login', { 
       username, password 
     })
-      .then(({ status }) => {
-        if (status === 200) {
+      .then((response) => {        
+        if (response.data.message === "Login successful") {
           console.log("no error");
 
           setError(false);
-          setStatusMessage("Successfully logged in");
+           setStatusMessage("Successfully logged in");
           window.location.href = "/app";
         }
       })
