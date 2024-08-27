@@ -1,64 +1,66 @@
-import express, { Request, Response } from "express";
+const express = require('express');
+const bcrypt = require('bcryptjs');
+const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
 import dotenv from "dotenv";
-import { LogingHandler } from "./login";
-const sessions = require('express-session')
+import { Request, Response } from "express";
+import { authenticateToken } from "../middlewares/auth";
 const cors = require('cors')
 
-declare module "express-session" {
-  interface SessionData {
-    userid: string;
-  }
+const users = [{username: "admin", password: "$2a$10$szuMmHLlhxVhsW5fgCEtku0ts5PqLn3kJe1h1EVZ92lp8z1HFEHGa"}]
+
+const corsOptions = {
+  credentials: true,      
 }
 
-dotenv.config();
+dotenv.config();    
 const app = express();
-
 const PORT = process.env.PORT;
 
-app.use(cors())
-
-app.use(sessions({
-  secret: 'gym secret',
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24, // 24 hours
-  },
-  resave: true,
-  saveUninitialized: false,
-}))
-app.use(express.json());
+app.use(cors(corsOptions))
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true })); 
 
-app.get("/", (req, res) => {
-  if (!req.session.userid) {
-    return res.status(401).send('Unauthorized');  
+app.post('/login', async (req: Request, res: Response) => {
+  const { username, password } = req.body;
+  const user = users.find(user => user.username === username);
+
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return res.status(401).json({ message: 'Invalid credentials' });
   }
 
-  return res.send("Hello World")
-})
+  // Crea un token JWT
+  const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  res.json({ token, message: 'Login successful'  });
+});       
 
-app.get("/login", LogingHandler);
+app.post('/register', async (req: Request, res: Response) => {
+  const { username, password } = req.body;
 
-app.get("/logout", (req, res) => {
-  req.session.destroy(() => {});
-  res.redirect('/login');
-})
-
-app.post("/process-login", (req: Request, res: Response) => {
-  if (req.body.username !== 'admin' || req.body.password !== 'admin') {
-    res.send(`
-      <h3>Invalid username or password</h3>
-      <a href="/login" >Go back to login</a>
-    `)
+  // Verifica si el usuario ya existe
+  if (users.find(user => user.username === username)) {
+    return res.status(400).json({ message: 'User already exists' });
   }
 
-  req.session.userid = req.body.username;
+  // Encripta la contraseña antes de guardarla
+  const hashedPassword = await bcrypt.hash(password, 10);
+  users.push({ username, password: hashedPassword });
 
-  res.json({ message: 'Login successful' });
+  res.json({ message: 'User registered successfully' });
+});
+
+app.post('/logout', (req: Request, res: Response) => {
+  res.clearCookie('token');
+  res.json({ message: 'Logout successful' });
+});
+
+app.get("/auth-check", authenticateToken, (req: Request, res: Response) => {
+  res.json({ message: "Token is valid", user: req.user });
 })
 
 app.listen(PORT, () => {
   console.log("Server running at PORT: ", PORT);
-}).on("error", (error) => {
+}).on("error", (error: Error  ) => {
   // gracefully handle error
   throw new Error(error.message);
 })

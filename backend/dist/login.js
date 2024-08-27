@@ -2,9 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LogingHandler = LogingHandler;
 function LogingHandler(req, res) {
-    if (req.session.userid) {
-        return res.redirect('/');
-    }
     res.send(`
     <h1>Login</h1>
     <form method="post" action="/process-login">
