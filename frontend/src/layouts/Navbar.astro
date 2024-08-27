@@ -1,6 +1,7 @@
 ---
 import HeaderLink from "../components/HeaderLink.astro"
 import { ROUTES } from "../../constants";
+import Logout from "../components/Logout.astro"
 ---
 
 <nav>
@@ -9,6 +10,7 @@ import { ROUTES } from "../../constants";
       return <HeaderLink route={route.href} />
     })}
   </ul>
+  <Logout />
 </nav>
 
 <script>

@@ -1,40 +1,25 @@
 import { useState, type FormEvent } from "react";
-import axios from "axios";
 import clsx from 'clsx';
+import { submitForm } from "../../utils/submitForm";
 
 function Form() {
   const [statusMessage, setStatusMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLoading(true);
+    setLoading(true)
 
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    const username = formData.get('username')?.toString() || "new";
-    const password = formData.get('password')?.toString() || "newer";
+    const {error, message, token} = await submitForm(event)
 
-    await axios.post('http://localhost:1234/process-login', { 
-      username, password 
-    })
-      .then((response) => {        
-        if (response.data.message === "Login successful") {
-          console.log("no error");
-
-          setError(false);
-           setStatusMessage("Successfully logged in");
-          window.location.href = "/app";
-        }
-      })
-      .catch((error) => {
-        setError(true);
-        setStatusMessage(error.message);
-      });
+    token && (document.cookie = `token=${token}; expires=1h`)
     
-    setLoading(false);
-  };
+    setError(error)
+    setStatusMessage(message)
+    setLoading(false)
+
+  }
 
   return (
     <form onSubmit={handleSubmit}>

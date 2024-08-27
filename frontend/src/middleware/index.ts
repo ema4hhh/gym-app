@@ -4,12 +4,21 @@ import axios from "axios";
 
 async function checkLogin(context: APIContext) {
     try {
-        const response = await axios.get("http://localhost:1234", {
+        const token = context.cookies.get("token")?.value
+
+        if(!token) {
+            return false
+        }
+
+        const response = await axios.get("http://localhost:1234/auth-check", {
             headers: {
-                "Cookie": `connect.sid=${context.cookies.get("connect.sid")?.value}`
+                Authorization: `Bearer ${token}`
             }
         })
-        if(response.statusText === "OK") {
+
+        if(response.statusText === "OK") {            
+            context.locals.user = response.data.user
+                
             return true
         } 
         
@@ -21,7 +30,7 @@ async function checkLogin(context: APIContext) {
 }
 
 export const onRequest = defineMiddleware(async(context, next) => {
-    const loginState = await checkLogin(context)
+    const loginState = await checkLogin(context)    
 
     if(loginState) {
         return next()

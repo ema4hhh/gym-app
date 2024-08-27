@@ -1,9 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../layouts/Navbar.astro';
+
+const data = Astro.locals;
 ---
 
-<Layout title="Gym world">
+<Layout title=`Hello, ${data.user}`>
   <Navbar />
   <main>
     <h1>super functional app</h1>
