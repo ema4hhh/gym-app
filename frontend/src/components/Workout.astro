@@ -1,0 +1,14 @@
+---
+import gymStore from '../store/gymStore';
+
+const { getState, setState, subscribe } = gymStore
+---
+
+<section class="flex">
+    <div class="flex-1">
+        {getState().currentWorkout.name}
+    </div>
+    <div>
+        <button>Start</button>
+    </div>
+</section>

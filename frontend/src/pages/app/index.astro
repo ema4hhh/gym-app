@@ -1,13 +1,22 @@
 ---
+import { WEEK_DAYS } from '../../../constants';
+import Workout from '../../components/Workout.astro';
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../layouts/Navbar.astro';
+import gymStore from '../../store/gymStore';
 
 const data = Astro.locals;
+const { user } = data
+const { getState, setState, subscribe } = gymStore
 ---
 
-<Layout title=`Hello, ${data.user}`>
+<Layout title=`Hello, ${user}`>
   <Navbar />
   <main>
-    <h1>super functional app</h1>
+    <h1>Good morning, {user}</h1>
+    <h2><b>{WEEK_DAYS[getState().day]}</b></h2>
+    <h3>Today's training is: {getState().currentWorkout.name}</h3>
+    <Workout />
+    <button>Do another one</button>
   </main>
 </Layout>
