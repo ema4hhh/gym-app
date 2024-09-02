@@ -1,0 +1,1 @@
+export const users = [{username: "admin", password: "$2a$10$szuMmHLlhxVhsW5fgCEtku0ts5PqLn3kJe1h1EVZ92lp8z1HFEHGa"}]
