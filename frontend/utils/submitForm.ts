@@ -13,23 +13,21 @@ export const submitForm = async (event: FormEvent<HTMLFormElement>) => {
       username, password 
     })
       .then((response) => {     
-		const message = response.data.message
+		    const message = response.data.message
 
-        console.log(response.data   );
-        if (message === "Login successful") {
+
+        if (response.status === 200) {
           const token = response.data.token;
           
-          
-          // window.location.href = "/app";
-          return result = {error: false, message: message, token: token}
-        }
+          return result = {error: false, message, token}
+        }       
 
-		return result = {error: true, message: message, token: ""}
+		    return result = {error: true, message, token: ""}
       })      
       .catch((error) => {
         console.log(error);
         
-		return result = {error: false, message: error.message,   token: ""}
+		    return result = {error: false, message: error.message, token: ""}
       });
 
 	  return result
