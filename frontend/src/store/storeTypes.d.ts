@@ -1,3 +1,5 @@
+import type { WEEK_DAYS } from "../../constants"
+
 export enum EQUIPMENT {
     DUMBELL,
     BARBELL,
@@ -6,10 +8,14 @@ export enum EQUIPMENT {
   }
   
 export interface Exercise {
-id: number,
-name: string,
-musclesWorked: string[],
-equipment: EQUIPMENT
+    id: number,
+    name: string,
+    musclesWorked: string[],
+    equipment: EQUIPMENT,
+    weight?: number,
+    reps?: number,
+    time?: number,
+    sets: number,
 }
 
 export interface RestDay {
@@ -22,21 +28,5 @@ export interface RestDay {
 export interface Workout {
     id: number,
     name: string,
-    routine: Exercise[] | RestDay
+    routine: Exercise[] | RestDay[]
 }
-
-interface uiSlice {
-    currentWorkout: () => Workout | undefined,
-    day: keyof typeof WEEK_DAYS,
-    updateDay: () => void
-}
-
-export interface workoutSlice {
-    workout: Workout | undefined,
-    setWorkout: (newWorkout: Workout) => void,
-    nextExercise: (Exercise: Exercise) => void,
-    currentExercise: Exercise | undefined,
-    restime: number,
-    setRestime: (time: number) => void
-}
-
