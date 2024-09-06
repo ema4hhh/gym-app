@@ -1,0 +1,242 @@
+{
+    "routines": [
+        {
+            "id": 1,
+            "name": "Full Body Strength Workout",
+            "routine": [
+                {
+                    "id": 101,
+                    "name": "Squats",
+                    "muscleGroups": [
+                        "Legs",
+                        "Glutes"
+                    ],
+                    "equipment": "Barbell",
+                    "weight": 60,
+                    "repetitions": 12,
+                    "sets": 4
+                },
+                {
+                    "id": 102,
+                    "name": "Bench Press",
+                    "muscleGroups": [
+                        "Chest",
+                        "Triceps",
+                        "Shoulders"
+                    ],
+                    "equipment": "Barbell",
+                    "weight": 50,
+                    "repetitions": 10,
+                    "sets": 3
+                },
+                {
+                    "id": 103,
+                    "name": "Deadlifts",
+                    "muscleGroups": [
+                        "Back",
+                        "Legs",
+                        "Core"
+                    ],
+                    "equipment": "Barbell",
+                    "weight": 80,
+                    "repetitions": 8,
+                    "sets": 4
+                },
+                {
+                    "id": 104,
+                    "name": "Pull-Ups",
+                    "muscleGroups": [
+                        "Back",
+                        "Biceps"
+                    ],
+                    "equipment": "Bodyweight",
+                    "weight": null,
+                    "repetitions": 10,
+                    "sets": 3
+                },
+                {
+                    "id": 105,
+                    "name": "Dumbbell Shoulder Press",
+                    "muscleGroups": [
+                        "Shoulders",
+                        "Triceps"
+                    ],
+                    "equipment": "Dumbbell",
+                    "weight": 15,
+                    "repetitions": 12,
+                    "sets": 4
+                },
+                {
+                    "id": 106,
+                    "name": "Plank",
+                    "muscleGroups": [
+                        "Core"
+                    ],
+                    "equipment": "Bodyweight",
+                    "weight": null,
+                    "repetitions": null,
+                    "sets": 3
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Push Workout Routine",
+            "routine": [
+                {
+                    "id": 201,
+                    "name": "Barbell Bench Press",
+                    "muscleGroups": [
+                        "Chest",
+                        "Shoulders",
+                        "Triceps"
+                    ],
+                    "equipment": "Barbell",
+                    "weight": 70,
+                    "repetitions": 10,
+                    "sets": 4
+                },
+                {
+                    "id": 202,
+                    "name": "Overhead Shoulder Press",
+                    "muscleGroups": [
+                        "Shoulders",
+                        "Triceps"
+                    ],
+                    "equipment": "Barbell",
+                    "weight": 40,
+                    "repetitions": 8,
+                    "sets": 4
+                },
+                {
+                    "id": 203,
+                    "name": "Incline Dumbbell Press",
+                    "muscleGroups": [
+                        "Upper Chest",
+                        "Shoulders",
+                        "Triceps"
+                    ],
+                    "equipment": "Dumbbell",
+                    "weight": 25,
+                    "repetitions": 12,
+                    "sets": 3
+                },
+                {
+                    "id": 204,
+                    "name": "Dips",
+                    "muscleGroups": [
+                        "Chest",
+                        "Triceps",
+                        "Shoulders"
+                    ],
+                    "equipment": "Bodyweight",
+                    "weight": null,
+                    "repetitions": 15,
+                    "sets": 3
+                },
+                {
+                    "id": 205,
+                    "name": "Dumbbell Lateral Raise",
+                    "muscleGroups": [
+                        "Shoulders"
+                    ],
+                    "equipment": "Dumbbell",
+                    "weight": 10,
+                    "repetitions": 15,
+                    "sets": 4
+                },
+                {
+                    "id": 206,
+                    "name": "Tricep Pushdown",
+                    "muscleGroups": [
+                        "Triceps"
+                    ],
+                    "equipment": "Machine",
+                    "weight": 25,
+                    "repetitions": 12,
+                    "sets": 4
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Pull Workout Routine",
+            "routine": [
+                {
+                    "id": 301,
+                    "name": "Deadlifts",
+                    "muscleGroups": [
+                        "Back",
+                        "Hamstrings",
+                        "Glutes",
+                        "Core"
+                    ],
+                    "equipment": "Barbell",
+                    "weight": 80,
+                    "repetitions": 8,
+                    "sets": 4
+                },
+                {
+                    "id": 302,
+                    "name": "Pull-Ups",
+                    "muscleGroups": [
+                        "Back",
+                        "Biceps"
+                    ],
+                    "equipment": "Bodyweight",
+                    "weight": null,
+                    "repetitions": 10,
+                    "sets": 4
+                },
+                {
+                    "id": 303,
+                    "name": "Barbell Rows",
+                    "muscleGroups": [
+                        "Back",
+                        "Biceps",
+                        "Rear Shoulders"
+                    ],
+                    "equipment": "Barbell",
+                    "weight": 60,
+                    "repetitions": 10,
+                    "sets": 4
+                },
+                {
+                    "id": 304,
+                    "name": "Face Pulls",
+                    "muscleGroups": [
+                        "Rear Shoulders",
+                        "Upper Back"
+                    ],
+                    "equipment": "Machine",
+                    "weight": 20,
+                    "repetitions": 12,
+                    "sets": 3
+                },
+                {
+                    "id": 305,
+                    "name": "Dumbbell Curls",
+                    "muscleGroups": [
+                        "Biceps"
+                    ],
+                    "equipment": "Dumbbell",
+                    "weight": 15,
+                    "repetitions": 12,
+                    "sets": 4
+                },
+                {
+                    "id": 306,
+                    "name": "Hammer Curls",
+                    "muscleGroups": [
+                        "Biceps",
+                        "Forearms"
+                    ],
+                    "equipment": "Dumbbell",
+                    "weight": 12,
+                    "repetitions": 15,
+                    "sets": 3
+                }
+            ]
+        }
+    ]
+}

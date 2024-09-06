@@ -1,3 +1,5 @@
+import type { Workout } from "./src/store/storeTypes"
+
 export enum COMMERCIAL_KILOGRAM_PLATES {
   0=2.5,
   1=5,
@@ -69,4 +71,8 @@ export enum GOOD_SERVER_RESPONSE {
   REGISTER_SUCESSFUL="Register sucessful",
   LOGOUT_SUCESSFUL="Logout sucessful",
   TOKEN_VALID="Token is valid"
+}
+
+export interface Routines {
+  routines: Workout[]
 }
