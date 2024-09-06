@@ -2,15 +2,15 @@ import { NextFunction, Request, Response } from "express";
 import { BAD_SERVER_RESPONSE } from "../enums";
 import { sendJsonResponse } from "../helpers/responseHelpers";
 import { ApiResponse } from "../../types";
-const jwt = require('jsonwebtoken');
+import { verifyToken } from "../utils/JWT";
 
 declare global {
-    namespace Express {
-      interface Request {
-        user: string;
-      }
+  namespace Express {
+    interface Request {
+      user: string;
     }
   }
+}
 
 export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers['authorization'];
@@ -28,20 +28,20 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
       });
     };
 
-    jwt.verify(token, process.env.JWT_SECRET, (err: Error, user: any) => {
-      if (err) {
-        const response: ApiResponse = {
-          message: BAD_SERVER_RESPONSE.TOKEN_VERIFY_ERROR
-        }
+    const { error, username } = verifyToken(token)
 
-        return sendJsonResponse({
-          ...response,
-          res,
-          statusCode: 403
-        });
-      };
+    if (error) {
+      const response: ApiResponse = {
+        message: BAD_SERVER_RESPONSE.TOKEN_VERIFY_ERROR
+      }
 
-      req.user = user.username;
-      next();
-    });
+      return sendJsonResponse({
+        ...response,
+        res,
+        statusCode: 403
+      });
+    }
+
+    req.user = username || "guest"; 
+    next();
   };

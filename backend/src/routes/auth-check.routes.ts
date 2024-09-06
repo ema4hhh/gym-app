@@ -10,7 +10,7 @@ export const AuthCheck = (req: Request, res: Response) => {
     }
   
     return sendJsonResponse({
-      ...response,      
+      ...response,
       res
     })
 }
