@@ -1,11 +1,59 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../layouts/Navbar.astro';
+import routines from "../../../mocks/routines.json"
+import { type Routines } from "../../../types.d"
+import RoutinePreviewModal from '../../components/RoutinePreviewModal';
+
+const parsedRoutines: Routines = JSON.parse(JSON.stringify(routines))
 ---
 
 <Layout title="Gym world">
   <Navbar />
   <main>
-    <h1>super functional ROUTINES</h1>
+    <h1>Routines</h1>
+
+    <article>
+      {parsedRoutines 
+        ? parsedRoutines.routines.map((workout) => (
+          <div>
+            <h3>{workout.name}</h3>
+            <button id={workout.id.toString()}>Preview</button> 
+          </div>
+        ))
+        : <p>Oh no, there is no routines, start by creating one: <button>Create</button></p>
+      }
+    </article>
+
+    <RoutinePreviewModal client:load />
   </main>
 </Layout>
+
+<script>
+  import gymStore from '../../store/gymStore';
+  import routines from "../../../mocks/routines.json"
+  import type { Routines } from '../../../types';
+
+  const parsedRoutines: Routines = JSON.parse(JSON.stringify(routines))
+  const buttons = document.getElementsByTagName("button")
+
+  const { getState } = gymStore
+  const { setShowWorkoutPreviewModal, setWorkout } = getState()
+
+  for(const [_, button] of Object.entries(buttons)) {
+    const buttonId = button.id
+    const buttonWorkout = parsedRoutines.routines.find((workout) => (workout.id.toString() === buttonId))
+
+    button.addEventListener("click", () => {      
+      if (buttonWorkout) {
+        setWorkout(buttonWorkout)
+        setShowWorkoutPreviewModal(true)       
+        return
+      }
+
+      console.log("there is no workouts");
+    })
+
+    
+  }  
+</script>
