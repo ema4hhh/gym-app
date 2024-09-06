@@ -6,6 +6,7 @@ import { Login } from "./src/routes/login.routes";
 import { Register } from "./src/routes/register.routes";
 import { Logout } from "./src/routes/logout.routes";
 import { AuthCheck } from "./src/routes/auth-check.routes";
+import { rmCalculate } from "./src/routes/rm-calculate.routes";
 const cors = require('cors')
 
 const corsOptions = {
@@ -24,9 +25,11 @@ app.post('/login', Login);
 
 app.post('/register', Register);
 
-app.post('/logout', Logout); 
+app.post('/logout', Logout);
 
 app.get("/auth-check", authenticateToken, AuthCheck);
+
+app.get("/rm-calculate", authenticateToken, rmCalculate);
 
 app.listen(PORT, () => {
   console.log("Server running at PORT: ", PORT);

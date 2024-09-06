@@ -11,5 +11,6 @@ export enum GOOD_SERVER_RESPONSE {
     LOGIN_SUCESSFUL="Login sucessful",
     REGISTER_SUCESSFUL="Register sucessful",
     LOGOUT_SUCESSFUL="Logout sucessful",
-    TOKEN_VALID="Token is valid"
+    TOKEN_VALID="Token is valid",
+    RM_CALCULATED="RM calculated sucessful"
 }
