@@ -8,6 +8,8 @@ import gymStore from '../../store/gymStore';
 const data = Astro.locals;
 const { user } = data
 const { getState, setState, subscribe } = gymStore
+
+const currentWorkout = getState().workout?.name
 ---
 
 <Layout title=`Hello, ${user}`>
@@ -15,8 +17,12 @@ const { getState, setState, subscribe } = gymStore
   <main>
     <h1>Good morning, {user}</h1>
     <h2><b>{WEEK_DAYS[getState().day]}</b></h2>
-    <h3>Today's training is: {getState().currentWorkout.name}</h3>
-    <Workout />
-    <button>Do another one</button>
+    <h3>Today's training is: {currentWorkout || "No workouts yet"}</h3>
+    {
+      currentWorkout && (
+        <Workout />
+        <button>Do another one</button>
+      )
+    }
   </main>
 </Layout>

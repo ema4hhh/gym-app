@@ -15,10 +15,11 @@ function Form() {
 
     if (token) {
       document.cookie = `token=${token}; expires=1h`
+      window.location.reload()
       // let currentUrlParams = new URLSearchParams(window.location.search)
       // currentUrlParams.set("token", token)
       // history.pushState(window.location.pathname + "?", currentUrlParams.toString())      
-    }
+    } 
     
     setError(error)
     setStatusMessage(message)
