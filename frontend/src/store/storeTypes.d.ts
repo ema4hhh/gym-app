@@ -8,7 +8,7 @@ export enum EQUIPMENT {
   }
   
 export interface Exercise {
-    id: number,
+    id: number, 
     name: string,
     musclesWorked: string[],
     equipment: EQUIPMENT,
@@ -21,12 +21,15 @@ export interface Exercise {
 export interface RestDay {
     id: 0,
     name: "Rest day 🥳"
-    musclesWorked: "Full body"
-    equipment: EQUIPMENT.BODYWEIGTH
 }
 
 export interface Workout {
     id: number,
     name: string,
-    routine: Exercise[] | RestDay[]
+    exercises: Exercise[]
+}
+
+export interface WelcomeWorkout extends Workout {
+    id: undefined
+    exercises: undefined
 }

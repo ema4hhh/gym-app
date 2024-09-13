@@ -3,10 +3,12 @@ interface Props {
   route: string
 }
 
-const { route } = Astro.props 
+const { route } = Astro.props
+
+const parsedRoute = route.split("/").pop()
 ---
 
-<li id={route}><a href={route === "home" ? "/app" : route}>{route}</a></li>
+<li id={route}><a href={route === "home" ? "/app" : route}>{parsedRoute}</a></li>
 
 
 <style>

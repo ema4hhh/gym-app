@@ -3,11 +3,11 @@
         {
             "id": 1,
             "name": "Full Body Strength Workout",
-            "routine": [
+            "exercises": [
                 {
                     "id": 101,
                     "name": "Squats",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Legs",
                         "Glutes"
                     ],
@@ -19,7 +19,7 @@
                 {
                     "id": 102,
                     "name": "Bench Press",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Chest",
                         "Triceps",
                         "Shoulders"
@@ -32,7 +32,7 @@
                 {
                     "id": 103,
                     "name": "Deadlifts",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Back",
                         "Legs",
                         "Core"
@@ -45,7 +45,7 @@
                 {
                     "id": 104,
                     "name": "Pull-Ups",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Back",
                         "Biceps"
                     ],
@@ -57,7 +57,7 @@
                 {
                     "id": 105,
                     "name": "Dumbbell Shoulder Press",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Shoulders",
                         "Triceps"
                     ],
@@ -69,7 +69,7 @@
                 {
                     "id": 106,
                     "name": "Plank",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Core"
                     ],
                     "equipment": "Bodyweight",
@@ -82,11 +82,11 @@
         {
             "id": 2,
             "name": "Push Workout Routine",
-            "routine": [
+            "exercises": [
                 {
                     "id": 201,
                     "name": "Barbell Bench Press",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Chest",
                         "Shoulders",
                         "Triceps"
@@ -99,7 +99,7 @@
                 {
                     "id": 202,
                     "name": "Overhead Shoulder Press",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Shoulders",
                         "Triceps"
                     ],
@@ -111,7 +111,7 @@
                 {
                     "id": 203,
                     "name": "Incline Dumbbell Press",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Upper Chest",
                         "Shoulders",
                         "Triceps"
@@ -124,7 +124,7 @@
                 {
                     "id": 204,
                     "name": "Dips",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Chest",
                         "Triceps",
                         "Shoulders"
@@ -137,7 +137,7 @@
                 {
                     "id": 205,
                     "name": "Dumbbell Lateral Raise",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Shoulders"
                     ],
                     "equipment": "Dumbbell",
@@ -148,7 +148,7 @@
                 {
                     "id": 206,
                     "name": "Tricep Pushdown",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Triceps"
                     ],
                     "equipment": "Machine",
@@ -161,11 +161,11 @@
         {
             "id": 3,
             "name": "Pull Workout Routine",
-            "routine": [
+            "exercises": [
                 {
                     "id": 301,
                     "name": "Deadlifts",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Back",
                         "Hamstrings",
                         "Glutes",
@@ -179,7 +179,7 @@
                 {
                     "id": 302,
                     "name": "Pull-Ups",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Back",
                         "Biceps"
                     ],
@@ -191,7 +191,7 @@
                 {
                     "id": 303,
                     "name": "Barbell Rows",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Back",
                         "Biceps",
                         "Rear Shoulders"
@@ -204,7 +204,7 @@
                 {
                     "id": 304,
                     "name": "Face Pulls",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Rear Shoulders",
                         "Upper Back"
                     ],
@@ -216,7 +216,7 @@
                 {
                     "id": 305,
                     "name": "Dumbbell Curls",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Biceps"
                     ],
                     "equipment": "Dumbbell",
@@ -227,7 +227,7 @@
                 {
                     "id": 306,
                     "name": "Hammer Curls",
-                    "muscleGroups": [
+                    "musclesWorked": [
                         "Biceps",
                         "Forearms"
                     ],

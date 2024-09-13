@@ -1,0 +1,74 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Navbar from "../../../layouts/Navbar.astro";
+import WorkoutFooter from "../../../layouts/WorkoutFooter.astro";
+import gymStore from "../../../store/gymStore";
+const { userRoutine } = gymStore.getState()
+
+const { workoutId } = Astro.params
+
+const page = userRoutine?.routines.find((workout) => workout.id == workoutId)
+    
+
+if (page === undefined) return Astro.redirect("/404");
+const { id, name, exercises } = page;
+
+const { setWorkout } = gymStore.getState()
+
+if (id !== undefined) setWorkout(id)
+---
+
+<Layout title={name}>
+    <Navbar />
+    <main>
+        <h1>{name}</h1>
+
+        <section class="divide-y-2 divide-black">
+            {
+                id === undefined
+                    ? <p>Select a workout:</p>
+
+                    : exercises.map((exercise) => (
+                        <article class="bg-slate-200 text-slate-900">   
+                            <h3>{exercise.name}</h3>
+                            <p>sets: {exercise.sets}</p>
+                            <p>{exercise.equipment}</p>
+                            
+                            <ul>
+                                {exercise.musclesWorked.map((muscle) => (
+                                    <li>{muscle}</li>
+                                ))}
+                            </ul>
+                            <button id={exercise.id.toString()} class="start-button border-black border-2">Start</button>
+                        </article>
+                    ))
+            }
+        </section>
+    </main>
+    <WorkoutFooter />
+</Layout>
+
+<script>
+  import gymStore from '../../../store/gymStore';
+  
+  const { setExercise, workout, setShowCurrentExerciseModal } = gymStore.getState()
+  
+  const startButtons = document.getElementsByClassName("start-button");
+ 
+  for(const [_, button] of Object.entries(startButtons)) {
+    const buttonId = button.id
+  
+    button.addEventListener("click", () => {      
+      const excercise = workout?.exercises.find((exercise) => (exercise.id.toString() === buttonId))
+      console.log(excercise)
+      
+      if (excercise) {
+        setExercise(excercise)
+        setShowCurrentExerciseModal(true)
+        return
+      }
+
+      console.log("Something is wrong with the exercise");
+    })
+  }
+</script>

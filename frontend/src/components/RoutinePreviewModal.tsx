@@ -16,7 +16,7 @@ function RoutinePreviewModal() {
     return (
         <div>
             <h4>{workout.name}</h4>
-            <article>{workout.routine.map((exercise) => {
+            <article>{workout.exercises.map((exercise) => {
                 const {name, musclesWorked} = exercise;
 
                 return (

@@ -2,14 +2,16 @@
 import HeaderLink from "../components/HeaderLink.astro"
 import { ROUTES } from "../../constants";
 import Logout from "../components/Logout.astro"
+import CurrentExerciseModal from "../components/CurrentExerciseModal";
 ---
 
 <nav>
   <ul class="flex items-center justify-evenly text-slate-200 font-semibold text-xl">
-    {ROUTES.map((route) => {      
+    {ROUTES.map((route) => {
       return <HeaderLink route={route.href} />
-    })}
+    })}               
   </ul>
+  <CurrentExerciseModal />
   <Logout />
 </nav>
 
@@ -21,5 +23,4 @@ import Logout from "../components/Logout.astro"
   const li = document.getElementById(currentPath)
 
   li?.classList.add("current-path")
-  
 </script>

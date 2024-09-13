@@ -5,15 +5,15 @@ import { devtools, persist } from "zustand/middleware";
 
 const gymStore = createStore<workoutSlice & uiSlice>()(
     devtools(
-        persist(
-            (...a) => ({
-                ...createWorkoutSlice(...a),
-                ...createUiSlice(...a)
-            }),
-            {
-                name: "gym-store",
-            }
-        ),
+      persist(
+        (...a) => ({
+          ...createWorkoutSlice(...a),
+          ...createUiSlice(...a)
+        }),
+        {
+          name: "gym-store",
+        }
+      ),
     )
 )
 

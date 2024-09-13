@@ -2,10 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../layouts/Navbar.astro';
 import routines from "../../../mocks/routines.json"
-import { type Routines } from "../../../types.d"
+import { type RoutinesWithNoWelcome } from "../../../types.d"
 import RoutinePreviewModal from '../../components/RoutinePreviewModal';
 
-const parsedRoutines: Routines = JSON.parse(JSON.stringify(routines))
+const parsedRoutines: RoutinesWithNoWelcome = JSON.parse(JSON.stringify(routines))
 ---
 
 <Layout title="Gym world">
@@ -18,42 +18,51 @@ const parsedRoutines: Routines = JSON.parse(JSON.stringify(routines))
         ? parsedRoutines.routines.map((workout) => (
           <div>
             <h3>{workout.name}</h3>
-            <button id={workout.id.toString()}>Preview</button> 
+            <button class="preview-button" id={workout.id.toString()}>Preview</button> 
+            <button class="start-button" id={workout.id.toString()}>Start</button>
           </div>
         ))
         : <p>Oh no, there is no routines, start by creating one: <button>Create</button></p>
       }
     </article>
 
-    <RoutinePreviewModal client:load />
+    <RoutinePreviewModal client:load /> 
   </main>
 </Layout>
 
 <script>
   import gymStore from '../../store/gymStore';
   import routines from "../../../mocks/routines.json"
-  import type { Routines } from '../../../types';
+  import type { RoutinesWithNoWelcome } from '../../../types';
 
-  const parsedRoutines: Routines = JSON.parse(JSON.stringify(routines))
-  const buttons = document.getElementsByTagName("button")
+  const parsedRoutines: RoutinesWithNoWelcome = JSON.parse(JSON.stringify(routines))
+  const previewButtons = document.getElementsByClassName("preview-button")
+  const startButtons = document.getElementsByClassName("start-button")
 
   const { getState } = gymStore
   const { setShowWorkoutPreviewModal, setWorkout } = getState()
 
-  for(const [_, button] of Object.entries(buttons)) {
+  for(const [_, button] of Object.entries(previewButtons)) {
     const buttonId = button.id
     const buttonWorkout = parsedRoutines.routines.find((workout) => (workout.id.toString() === buttonId))
 
     button.addEventListener("click", () => {      
       if (buttonWorkout) {
-        setWorkout(buttonWorkout)
+        setWorkout(buttonWorkout.id )
         setShowWorkoutPreviewModal(true)       
         return
       }
 
       console.log("there is no workouts");
     })
+  }
 
-    
-  }  
+  for(const [_, button] of Object.entries(startButtons)) {
+    const buttonId = button.id
+
+    button.addEventListener("click", () => {      
+      const url = ("workout/" + buttonId)
+      window.location.href = url
+    })
+  }
 </script>

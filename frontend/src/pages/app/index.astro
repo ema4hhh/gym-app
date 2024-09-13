@@ -7,7 +7,7 @@ import gymStore from '../../store/gymStore';
 
 const data = Astro.locals;
 const { user } = data
-const { getState, setState, subscribe } = gymStore
+const { getState } = gymStore
 
 const currentWorkout = getState().workout?.name
 ---

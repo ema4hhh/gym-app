@@ -1,4 +1,4 @@
-import type { Workout } from "./src/store/storeTypes"
+import type { WelcomeWorkout, Workout } from "./src/store/storeTypes"
 
 export enum COMMERCIAL_KILOGRAM_PLATES {
   0=2.5,
@@ -73,6 +73,10 @@ export enum GOOD_SERVER_RESPONSE {
   TOKEN_VALID="Token is valid"
 }
 
-export interface Routines {
+export interface RoutinesWithNoWelcome {
   routines: Workout[]
+}
+
+export interface Routines {
+  routines: (Workout | WelcomeWorkout)[]
 }
