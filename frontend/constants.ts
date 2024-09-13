@@ -1,8 +1,9 @@
 export const ROUTES =[
-  {href: "home"},
-  {href: "routines"},
-  {href: "history"},
-  {href: "config"},
+  {href: "/app/home"},
+  {href: "/app/routines"},
+  {href: "/app/history"},
+  {href: "/app/config"},
+  {href: "/app/workout"},
 ]
 
 export const WEEK_DAYS = {
