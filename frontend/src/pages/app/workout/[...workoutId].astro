@@ -1,7 +1,7 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import Navbar from "../../../layouts/Navbar.astro";
-import WorkoutFooter from "../../../layouts/WorkoutFooter.astro";
+import Footer from "../../../layouts/Footer.astro";
 import gymStore from "../../../store/gymStore";
 const { userRoutine } = gymStore.getState()
 
@@ -12,10 +12,6 @@ const page = userRoutine?.routines.find((workout) => workout.id == workoutId)
 
 if (page === undefined) return Astro.redirect("/404");
 const { id, name, exercises } = page;
-
-const { setWorkout } = gymStore.getState()
-
-if (id !== undefined) setWorkout(id)
 ---
 
 <Layout title={name}>
@@ -23,7 +19,7 @@ if (id !== undefined) setWorkout(id)
     <main>
         <h1>{name}</h1>
 
-        <section class="divide-y-2 divide-black">
+        <section class="divide-y-2 divide-black" data-workout-id={id}>
             {
                 id === undefined
                     ? <p>Select a workout:</p>
@@ -45,13 +41,17 @@ if (id !== undefined) setWorkout(id)
             }
         </section>
     </main>
-    <WorkoutFooter />
+    <Footer />
 </Layout>
 
 <script>
   import gymStore from '../../../store/gymStore';
   
-  const { setExercise, workout, setShowCurrentExerciseModal } = gymStore.getState()
+  const { setExercise, workout, setShowCurrentExerciseModal, setWorkout } = gymStore.getState()
+  
+  const workoutId = document.querySelector("[data-workout-id]")?.getAttribute("data-workout-id")
+  
+  if (workoutId !== null && workoutId !== undefined) setWorkout(parseInt(workoutId))
   
   const startButtons = document.getElementsByClassName("start-button");
  
@@ -60,8 +60,7 @@ if (id !== undefined) setWorkout(id)
   
     button.addEventListener("click", () => {      
       const excercise = workout?.exercises.find((exercise) => (exercise.id.toString() === buttonId))
-      console.log(excercise)
-      
+  
       if (excercise) {
         setExercise(excercise)
         setShowCurrentExerciseModal(true)
