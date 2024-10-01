@@ -4,7 +4,10 @@ export enum BAD_SERVER_RESPONSE {
     USER_NOT_LOGGED="User is not logged",
     TOKEN_VERIFY_ERROR="The token has exipred or doesn't exist",
     TOKEN_SIGN_ERROR="Something went wrong Signing the token, please contact me: ema4hhh@gmail.com",
-    LOGOUT_ERROR="Something went wrong, please contact me if cannot logout: ema4hhh@gmail.com"
+    LOGOUT_ERROR="Something went wrong, please contact me if cannot logout: ema4hhh@gmail.com",
+    RM_NO_VALUES="Weight or repetitions is missing",
+    CONVERSION_NO_VALUES="Weight or unit is missing",
+    UNSUPORTED_WEIGHT_UNIT="The weight unit used is not supported or was bad spelled"
 }
 
 export enum GOOD_SERVER_RESPONSE {
@@ -12,5 +15,6 @@ export enum GOOD_SERVER_RESPONSE {
     REGISTER_SUCESSFUL="Register sucessful",
     LOGOUT_SUCESSFUL="Logout sucessful",
     TOKEN_VALID="Token is valid",
-    RM_CALCULATED="RM calculated sucessful"
+    RM_CALCULATED="RM calculated sucessful",
+    WEIGHT_CONVERTED="Weight converted"
 }
