@@ -8,7 +8,6 @@ import { kgToLb } from "../utils/kgToLb";
 export const Conversion = (req: Request, res: Response) => {
   const { weight, unit } = req.query
   const parsedWeight = parseInt(weight as string, 10)
-  console.log(parsedWeight)
   
   if(isNaN(parsedWeight)) {
     const response: ApiResponse = {

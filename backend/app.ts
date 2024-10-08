@@ -1,5 +1,4 @@
 import express from 'express';
-const bodyParser = require('body-parser');
 import dotenv from "dotenv";
 import { authenticateToken } from "./src/middlewares/auth";
 import { Login } from "./src/routes/login.routes";
@@ -8,6 +7,8 @@ import { Logout } from "./src/routes/logout.routes";
 import { AuthCheck } from "./src/routes/auth-check.routes";
 import { RmCalculate } from "./src/routes/rm-calculate.routes";
 import { Conversion } from './src/routes/conversion.routes';
+import { SuggestWeight } from './src/routes/suggest-weight.routes';
+const figlet = require("figlet")
 const cors = require('cors')
 
 declare global {
@@ -27,7 +28,7 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(cors(corsOptions))
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 
 app.post('/login', Login);       
@@ -42,8 +43,11 @@ app.get("/rm-calculate", authenticateToken, RmCalculate);
 
 app.get("/conversion", authenticateToken, Conversion)
 
+app.get("/suggest", authenticateToken, SuggestWeight)
+
 app.listen(PORT, () => {
   console.log("Server running at PORT: ", PORT);
+  console.log(figlet.textSync("Gym-app", "Colossal"))
 }).on("error", (error: Error  ) => {
   throw new Error(error.message);
 })
